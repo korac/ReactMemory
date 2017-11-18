@@ -1,5 +1,6 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
+<<<<<<< HEAD
 import { Provider } from 'react-redux';
 import { createStore } from 'redux';
 
@@ -13,4 +14,12 @@ ReactDOM.render(
         <App />
     </Provider>
     , document.getElementById('root'));
+=======
+
+import './index.css';
+import App from './components/App';
+import registerServiceWorker from './registerServiceWorker';
+
+ReactDOM.render(<App />, document.getElementById('root'));
+>>>>>>> initializing app; first card compontent and icons
 registerServiceWorker();

@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 .card-perspective {
     position: relative;
     perspective: 800px;
@@ -15,6 +16,23 @@
     -ms-transition: all .5s ease;
     -o-transition: all .5s ease;
     transition: all .5s ease;
+=======
+.memory-card {
+    width: 180px;
+    height: 250px;
+    border: 1px solid rgba(#333, 0.9);
+    border-radius: 4px;
+    box-shadow: 0 0 12px 0 rgba(0, 0, 0, 0.2);
+    transform-style: preserve-3d;
+    -webkit-transition: all .8s ease;
+    -moz-transition: all .8s ease;
+    -ms-transition: all .8s ease;
+    -o-transition: all .8s ease;
+    transition: all .8s ease;
+
+    position: relative;
+    left: 200px;
+>>>>>>> initializing app; first card compontent and icons
 
     &.memory-card--flipped {
         transform: rotateY(180deg);
@@ -27,6 +45,7 @@
         backface-visibility: hidden;
 
         &.card-side__front {
+<<<<<<< HEAD
             display: flex;
             justify-content: flex-end;
             align-items: flex-end;
@@ -50,6 +69,14 @@
                 height: 50%;
             }
 
+=======
+            background: linear-gradient(135deg, #5dd3c7, #8f49cb);
+        }
+
+        &.card-side__back {
+            background-color: #fff;
+            transform: rotateY(180deg);
+>>>>>>> initializing app; first card compontent and icons
         }
 
     }
