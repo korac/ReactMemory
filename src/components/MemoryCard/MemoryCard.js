@@ -1,24 +1,21 @@
 import React, { Component } from 'react';
+import { connect } from 'react-redux';
+import * as actions from '../../actions';
 
-import CssIcon from '../icons/CssIcon/CssIcon';
-import RubyIcon from '../icons/RubyIcon/RubyIcon';
-import RailsIcon from '../icons/RailsIcon/RailsIcon';
-import ReactIcon from '../icons/ReactIcon/ReactIcon';
-import HtmlIcon from '../icons/HtmlIcon/HtmlIcon';
-import JsIcon from '../icons/JsIcon/JsIcon';
-import PyIcon from '../icons/PyIcon/PyIcon';
-import PhpIcon from '../icons/PhpIcon/PhpIcon';
+import background from './blue.jpg';
 
 class MemoryCard extends Component {
     constructor(props) {
         super(props);
 
-        this.state = { flipped: false };
+        this.state = { flipped: false, cardId: this.props.cardId };
         this.flipCard = this.flipCard.bind(this);
     }
 
     flipCard() {
         this.setState({ flipped: !this.state.flipped });
+        this.props.guessCard(this.state.cardId);
+        // console.log(`Card Id je: ${this.state.cardId}`)
     }
 
     cardStateStyle() {
@@ -27,10 +24,14 @@ class MemoryCard extends Component {
 
     render() {
         return (
-            <div className={this.cardStateStyle()} onClick={this.flipCard}>
-                <div className="card-side card-side__front"></div>
-                <div className="card-side card-side__back">
-                    <PhpIcon />
+            <div className="card-perspective">
+                <div className={this.cardStateStyle()} onClick={this.flipCard}>
+                    <div className="card-side card-side__front">
+                        <img src={background} className="front-background" alt="Card background" />
+                    </div>
+                    <div className="card-side card-side__back">
+                        {this.props.children}
+                    </div>
                 </div>
             </div>
         );
@@ -38,4 +39,4 @@ class MemoryCard extends Component {
 
 }
 
-export default MemoryCard;
+export default connect(null, actions)(MemoryCard);
