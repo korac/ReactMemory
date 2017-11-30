@@ -1,0 +1,6 @@
+.game {
+  display: grid;
+  grid-template-columns: 240px 1fr;
+  height: 100%;
+  background-image: url("./bg-pattern.jpg");
+  background-repeat: repeat; }

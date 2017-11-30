@@ -1,0 +1,12 @@
+@import "~normalize-css/normalize.css";
+@import "./fonts.css";
+
+body {
+    background: #f0f0f0;
+    font-family: Circular, sans-serif;
+
+    &.body--auth {
+        background-color: #1e72bb;
+    }
+
+}
