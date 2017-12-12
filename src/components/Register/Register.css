@@ -35,8 +35,7 @@
     transform: rotateZ(360deg); } }
       .register-card .card-content .card-content__icon .cards-icon {
         width: 36px;
-        position: absolute;
-        top: 100px; }
+        position: absolute; }
       .register-card .card-content .card-content__icon .user-icon {
         position: absolute;
         transform: scale(0); }
@@ -52,6 +51,9 @@
         color: #555;
         font-size: 14px;
         line-height: 1.5; }
+      .register-card .card-content .card-content__form .user-registered-content {
+        opacity: 0;
+        transform: translateY(40px); }
       .register-card .card-content .card-content__form .form-fields {
         margin-top: 24px; }
       .register-card .card-content .card-content__form .form-field {
@@ -93,7 +95,7 @@
           color: #fff;
           font-size: 16px;
           font-weight: bold;
-          cursor: default;
+          cursor: not-allowed;
           outline: none; }
           .register-card .card-content .card-content__form .form-submit .form-button.form-button--active {
             background-color: #36C991;

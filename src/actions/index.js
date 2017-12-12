@@ -6,10 +6,6 @@ export function registerUser(username, history) {
             dispatch({type: USER_REGISTER, payload: username});
         }, 1500);
     }
-    // return {
-    //     type: USER_REGISTER,
-    //     payload: username
-    // }
 }
 
 export function guessCard(cardId) {

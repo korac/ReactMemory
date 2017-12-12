@@ -45,6 +45,46 @@ const userTransitionStyles = {
     }
 };
 
+const defaultTitleStyles = {
+    entering: {
+        position: 'absolute',
+        transform: 'translateY(-40px)',
+        opacity: 0,
+        transition: 'all .3s ease'
+    },
+    entered: {
+        display: 'none'
+    }
+};
+
+const userTitleStyles = {
+    entered: {
+        transform: 'translateY(0)',
+        opacity: 1,
+        transition: 'all .3s ease'
+    }
+};
+
+const defaultDescriptionStyles = {
+    entering: {
+        position: 'absolute',
+        transform: 'translateY(-40px)',
+        opacity: 0,
+        transition: 'all .3s ease .1s'
+    },
+    entered: {
+        display: 'none'
+    }
+};
+
+const userDescriptionStyles = {
+    entered: {
+        transform: 'translateY(0)',
+        opacity: 1,
+        transition: 'all .3s ease'
+    }
+};
+
 class Register extends Component {
     constructor(props) {
         super(props);
@@ -72,6 +112,21 @@ class Register extends Component {
         if(username) {
             this.props.history.push('/');
         }
+    }
+
+    renderFormContent(valid) {
+        return (
+            <div className="form-fields">
+                <Field
+                    type="text"
+                    name="username"
+                    component={this.renderField}
+                />
+                <div className="form-submit">
+                    <button type="submit" className={`form-button ${ valid && !this.state.registering ? 'form-button--active' : ''}`}>Confirm name</button>
+                </div>
+            </div>
+        );
     }
 
     renderField(field) {
@@ -126,20 +181,45 @@ class Register extends Component {
                             </Transition>
                         </div>
                         <form className="card-content__form" onSubmit={handleSubmit(this.handleFormSubmit)}>
-                            <div className="form-title">Game Register</div>
-                            <div className="form-description">
-                                Please enter your name before the game starts. <span role="img" aria-label="emoji">🚀</span>
-                            </div>
-                            <div className="form-fields">
-                                <Field
-                                    type="text"
-                                    name="username"
-                                    component={this.renderField}
-                                />
-                                <div className="form-submit">
-                                    <button type="submit" className={`form-button ${ valid ? 'form-button--active' : ''}`}>Start Game</button>
-                                </div>
-                            </div>
+                            <Transition in={!!this.props.username} timeout={300}>
+                                {
+                                    (titleState) => {
+                                        console.log(titleState);
+                                        return <div className="form-title" style={{...defaultTitleStyles[titleState]}}>Game Register</div>;
+                                    }
+                                }
+                            </Transition>
+                            <Transition in={!!this.props.username} timeout={100} mountOnEnter={true}>
+                                {
+                                    (titleState) => {
+                                        return <div className="form-title user-registered-content" style={{...userTitleStyles[titleState]}}>{`Welcome, ${this.props.username}!`}</div>;
+                                    }
+                                }
+                            </Transition>
+                            <Transition in={!!this.props.username} timeout={300}>
+                                {
+                                    (descriptionState) => {
+                                        return (
+                                            <div className="form-description" style={{...defaultDescriptionStyles[descriptionState]}}>
+                                                Please enter your name before the game starts. <span role="img" aria-label="emoji">🚀</span>
+                                            </div>
+                                        );
+                                    }
+                                }
+                            </Transition>
+                            <Transition in={!!this.props.username} timeout={200} mountOnEnter={true}>
+                                {
+                                    (descriptionState) => {
+                                        return (
+                                            <div className="form-description user-registered-content" style={{...userDescriptionStyles[descriptionState]}}>
+                                                Thanks for your registration. Here's a cookie for you <span role="img" aria-label="emoji">🍪</span>
+                                                <br/>Start the game whenever you feel ready!
+                                            </div>
+                                        );
+                                    }
+                                }
+                            </Transition>
+                            {this.renderFormContent(valid)}
                         </form>
                     </div>
                 </div>
