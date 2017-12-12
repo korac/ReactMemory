@@ -2,14 +2,54 @@ import React, { Component } from 'react';
 import { Field, reduxForm } from 'redux-form';
 import { connect } from 'react-redux';
 import { registerUser} from "../../actions";
+import { Transition } from 'react-transition-group';
 
 import SpinnerIcon from '../icons/SpinnerIcon/SpinnerIcon';
 import CardsIcon from '../icons/CardsIcon/CardsIcon';
+import UserIcon from "../icons/UserIcon/UserIcon";
+
+const spinnerTransitionStyles = {
+    entered: {
+        animationDuration: '6s',
+        animationName: 'rotateSpinner',
+        animationIterationCount: 'infinite',
+        animationTimingFunction: 'linear'
+    },
+    exiting: {
+        animationDuration: '6s',
+        animationName: 'rotateSpinner',
+        animationIterationCount: 'infinite',
+        animationTimingFunction: 'linear',
+        animationPlayState: 'paused'
+    },
+    exited: {
+        animationDuration: '6s',
+        animationName: 'rotateSpinner',
+        animationIterationCount: 'infinite',
+        animationTimingFunction: 'linear',
+        animationPlayState: 'paused'
+    }
+};
+
+const cardsTransitionStyles = {
+    entered: {
+        transform: 'scale(0)',
+        transition: 'all .2s ease .1s'
+    }
+};
+
+const userTransitionStyles = {
+    entered: {
+        transform: 'scale(1)',
+        transition: 'all .2s ease .2s'
+    }
+};
 
 class Register extends Component {
     constructor(props) {
         super(props);
 
+        this.state = { registering: false };
         this.handleFormSubmit = this.handleFormSubmit.bind(this);
     }
 
@@ -22,7 +62,10 @@ class Register extends Component {
     }
 
     componentWillReceiveProps(nextProps) {
-        this.redirectIfRegistered(nextProps.username);
+        if(nextProps.username) {
+            this.setState({ registering: false });
+        }
+        // this.redirectIfRegistered(nextProps.username);
     }
 
     redirectIfRegistered(username) {
@@ -48,6 +91,7 @@ class Register extends Component {
     }
 
     handleFormSubmit({ username }) {
+        this.setState({ registering: true });
         this.props.registerUser(username, this.props.history);
     }
 
@@ -59,8 +103,27 @@ class Register extends Component {
                 <div className="register-card">
                     <div className="card-content">
                         <div className="card-content__icon">
-                            <SpinnerIcon />
-                            <CardsIcon />
+                            <Transition in={this.state.registering} timeout={0}>
+                                {
+                                    (spinnerState) => {
+                                        return <SpinnerIcon style={{...spinnerTransitionStyles[spinnerState]}} />;
+                                    }
+                                }
+                            </Transition>
+                            <Transition in={!!this.props.username} timeout={0}>
+                                {
+                                    (cardsState) => {
+                                        return <CardsIcon style={{...cardsTransitionStyles[cardsState]}} />;
+                                    }
+                                }
+                            </Transition>
+                            <Transition in={!!this.props.username} timeout={0}>
+                                {
+                                    (userState) => {
+                                        return <UserIcon style={{...userTransitionStyles[userState]}} />;
+                                    }
+                                }
+                            </Transition>
                         </div>
                         <form className="card-content__form" onSubmit={handleSubmit(this.handleFormSubmit)}>
                             <div className="form-title">Game Register</div>

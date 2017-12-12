@@ -29,10 +29,30 @@
             padding-right: 40px;
             position: relative;
 
+            .spinner-icon {
+                height: 98px;
+
+                @keyframes rotateSpinner {
+                    from {
+                        transform: rotateZ(0deg);
+                    }
+
+                    to {
+                        transform: rotateZ(360deg);
+                    }
+                }
+
+            }
+
             .cards-icon {
                 width: 36px;
                 position: absolute;
-                top: 98px;
+                top: 100px;
+            }
+
+            .user-icon {
+                position: absolute;
+                transform: scale(0);
             }
 
         }

@@ -2,7 +2,7 @@ import React from 'react';
 
 const SpinnerIcon = (props) => {
     return (
-        <div className="spinner-icon icon-wrapper">
+        <div className="spinner-icon icon-wrapper" style={{...props.style}}>
             <svg xmlns="http://www.w3.org/2000/svg" width="99" height="98" viewBox="0 0 99 98">
                 <g fill="none" fillRule="evenodd">
                     <g stroke="#1e71bb" strokeLinecap="round" strokeOpacity=".25" strokeWidth="4">
