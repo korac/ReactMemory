@@ -6,15 +6,12 @@
     display: flex;
     justify-content: space-between;
     align-items: center;
-    padding: 20px;
-    background-color: #FFDC8A; }
+    padding: 20px; }
     .sidebar .sidebar-header .sidebar-title {
       margin: 0;
-      color: #FF8508;
       font-size: 22px; }
     .sidebar .sidebar-header .react-icon {
       width: 40px;
       height: 40px; }
   .sidebar .sidebar-body {
-    flex-grow: 1;
-    background-color: #FFEDC3; }
+    flex-grow: 1; }

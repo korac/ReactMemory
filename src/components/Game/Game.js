@@ -12,6 +12,14 @@ class Game extends Component {
         }
     }
 
+    componentDidMount() {
+        document.body.classList.add('body--blue');
+    }
+
+    componentWillUnmount() {
+        document.body.classList.remove('body--blue');
+    }
+
     render() {
         return (
             <div className="game">

@@ -38,7 +38,7 @@ class Sidebar extends Component {
             <div className="sidebar">
                 <header className="sidebar-header">
                     <h2 className="sidebar-title">React Memory</h2>
-                    <ReactIcon color='#FF8508' />
+                    <ReactIcon color='#fff' />
                 </header>
                 <div className="sidebar-body">
                     <div className="game-stats">Pairs guessed: {this.props.pairsGuessed}</div>
