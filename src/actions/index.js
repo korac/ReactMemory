@@ -1,4 +1,12 @@
-import { GUESS_CARD, GUESS_RESET, INCREMENT_PAIR_COUNTER } from '../reducers/types';
+import { USER_REGISTER, GUESS_CARD, GUESS_RESET, INCREMENT_PAIR_COUNTER } from './types';
+
+export function registerUser(username, history) {
+    return dispatch => {
+        setTimeout(() => {
+            dispatch({type: USER_REGISTER, payload: username});
+        }, 1500);
+    }
+}
 
 export function guessCard(cardId) {
     return {
