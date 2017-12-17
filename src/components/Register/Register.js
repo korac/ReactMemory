@@ -7,96 +7,22 @@ import { Transition } from 'react-transition-group';
 import SpinnerIcon from '../icons/SpinnerIcon/SpinnerIcon';
 import CardsIcon from '../icons/CardsIcon/CardsIcon';
 import UserIcon from "../icons/UserIcon/UserIcon";
-
-const spinnerTransitionStyles = {
-    entered: {
-        animationDuration: '6s',
-        animationName: 'rotateSpinner',
-        animationIterationCount: 'infinite',
-        animationTimingFunction: 'linear'
-    },
-    exiting: {
-        animationDuration: '6s',
-        animationName: 'rotateSpinner',
-        animationIterationCount: 'infinite',
-        animationTimingFunction: 'linear',
-        animationPlayState: 'paused'
-    },
-    exited: {
-        animationDuration: '6s',
-        animationName: 'rotateSpinner',
-        animationIterationCount: 'infinite',
-        animationTimingFunction: 'linear',
-        animationPlayState: 'paused'
-    }
-};
-
-const cardsTransitionStyles = {
-    entered: {
-        transform: 'scale(0)',
-        transition: 'all .2s ease .1s'
-    }
-};
-
-const userTransitionStyles = {
-    entered: {
-        transform: 'scale(1)',
-        transition: 'all .2s ease .2s'
-    }
-};
-
-const defaultTitleStyles = {
-    entering: {
-        position: 'absolute',
-        transform: 'translateY(-40px)',
-        opacity: 0,
-        transition: 'all .3s ease'
-    },
-    entered: {
-        display: 'none'
-    }
-};
-
-const userTitleStyles = {
-    entered: {
-        transform: 'translateY(0)',
-        opacity: 1,
-        transition: 'all .3s ease'
-    }
-};
-
-const defaultDescriptionStyles = {
-    entering: {
-        position: 'absolute',
-        transform: 'translateY(-40px)',
-        opacity: 0,
-        transition: 'all .3s ease .1s'
-    },
-    entered: {
-        display: 'none'
-    }
-};
-
-const userDescriptionStyles = {
-    entered: {
-        transform: 'translateY(0)',
-        opacity: 1,
-        transition: 'all .3s ease'
-    }
-};
-
-const registerTransitionStyles = {
-    entering: {
-        opacity: 0,
-        transition: 'opacity .45s ease'
-    }
-};
+import {
+    spinnerTransitionStyles,
+    cardsTransitionStyles,
+    userTransitionStyles,
+    defaultTitleStyles,
+    userTitleStyles,
+    defaultDescriptionStyles,
+    userDescriptionStyles,
+    registerTransitionStyles
+} from "./animationStyles";
 
 class Register extends Component {
     constructor(props) {
         super(props);
 
-        this.state = { registering: false, ready: false };
+        this.state = { registering: false, registered: false };
         this.handleFormSubmit = this.handleFormSubmit.bind(this);
         this.handleStartClick = this.handleStartClick.bind(this);
         this.redirectIfRegistered = this.redirectIfRegistered.bind(this);
@@ -118,7 +44,6 @@ class Register extends Component {
         if(nextProps.username) {
             this.setState({ registering: false });
         }
-        // this.redirectIfRegistered(nextProps.username);
     }
 
     redirectIfRegistered(username = this.props.username) {
@@ -176,7 +101,15 @@ class Register extends Component {
     }
 
     handleStartClick() {
-        this.setState({ ready: true });
+        this.setState({ registered: true });
+    }
+
+    tidyName(name) {
+        if(name.length > 15) {
+            return `${name.substr(0, 15)}..`
+        }
+
+        return name;
     }
 
     render() {
@@ -184,7 +117,7 @@ class Register extends Component {
 
         return (
             <div className="register-wrapper">
-                <Transition in={this.state.ready} timeout={450} onEntered={this.redirectIfRegistered}>
+                <Transition in={this.state.registered} timeout={450} onEntered={this.redirectIfRegistered}>
                     {
                         (state) => {
                             return (
@@ -217,7 +150,6 @@ class Register extends Component {
                                             <Transition in={!!this.props.username} timeout={300}>
                                                 {
                                                     (titleState) => {
-                                                        console.log(titleState);
                                                         return <div className="form-title" style={{...defaultTitleStyles[titleState]}}>Game Register</div>;
                                                     }
                                                 }
@@ -225,7 +157,7 @@ class Register extends Component {
                                             <Transition in={!!this.props.username} timeout={100} mountOnEnter={true}>
                                                 {
                                                     (titleState) => {
-                                                        return <div className="form-title user-registered-content" style={{...userTitleStyles[titleState]}}>{`Welcome, ${this.props.username}!`}</div>;
+                                                        return <div className="form-title user-registered-content" style={{...userTitleStyles[titleState]}}>{`Welcome, ${this.tidyName(this.props.username)}!`}</div>;
                                                     }
                                                 }
                                             </Transition>
