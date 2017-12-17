@@ -1,4 +1,4 @@
-import { GUESS_CARD, GUESS_RESET } from "./types";
+import { GUESS_CARD, GUESS_RESET } from "../actions/types";
 
 export default function(state = [], action) {
     switch(action.type) {

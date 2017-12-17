@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
 import { guessReset, pairGuessed } from '../../actions';
 
@@ -37,10 +38,11 @@ class Sidebar extends Component {
             <div className="sidebar">
                 <header className="sidebar-header">
                     <h2 className="sidebar-title">React Memory</h2>
-                    <ReactIcon color='#FF8508' />
+                    <ReactIcon color='#fff' />
                 </header>
                 <div className="sidebar-body">
                     <div className="game-stats">Pairs guessed: {this.props.pairsGuessed}</div>
+                    <Link to='/register'>Back to Register</Link>
                 </div>
             </div>
         );

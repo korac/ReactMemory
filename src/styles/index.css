@@ -1,0 +1,7 @@
+@import url(~normalize-css/normalize.css);
+@import url(./fonts.css);
+body {
+  background: #f0f0f0;
+  font-family: Circular, sans-serif; }
+  body.body--blue {
+    background-color: #1e72bb; }
