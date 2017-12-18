@@ -1,7 +1,11 @@
 .game {
     display: grid;
-    grid-template-columns: 240px 1fr;
-    height: 100%;
-    background-image: url('./bg-pattern.jpg');
-    background-repeat: repeat;
+    grid-template-columns: 120px 1fr;
+    position: fixed;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    right: 0;
+    //background-image: url('./bg-pattern.jpg');
+    //background-repeat: repeat;
 }

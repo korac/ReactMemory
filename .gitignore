@@ -22,4 +22,7 @@ yarn-error.log*
 
 .idea/
 
+# css
+src/**/*.css
+
 src/assets/fonts
