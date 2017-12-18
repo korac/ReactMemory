@@ -1,15 +1,16 @@
 import React, { Component } from 'react';
-import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
-import { guessReset, pairGuessed } from '../../actions';
+import { guessReset, pairGuessed, deregisterUser } from '../../actions';
 
 import ReactIcon from '../icons/ReactIcon/ReactIcon';
+import LogoutIcon from '../icons/LogoutIcon/LogoutIcon';
 
 class Sidebar extends Component {
     constructor(props) {
         super(props);
 
-        this.state = { currentlyGuessedPair: [] }
+        this.state = { currentlyGuessedPair: [] };
+        this.handleLogoutClick = this.handleLogoutClick.bind(this);
     }
 
     componentWillReceiveProps(nextProps) {
@@ -33,15 +34,30 @@ class Sidebar extends Component {
         }
     }
 
+    handleLogoutClick() {
+        this.props.deregisterUser();
+    }
+
     render() {
         return (
             <div className="sidebar" style={{...this.props.style}}>
                 <header className="sidebar-header">
                     <ReactIcon color='#fff' />
                 </header>
+                <hr/>
                 <div className="sidebar-body">
                     {/*<div className="game-stats">Pairs guessed: {this.props.pairsGuessed}</div>*/}
-                    {/*<Link to='/register'>Back to Register</Link>*/}
+                    <div className="sidebar-body__content">
+                        <div className="game-stats">
+                            <div className="stats-info">Pairs Guessed:</div>
+                            <div className="pairs__guessed">0</div>
+                            {/*<span className="pairs__total">/24</span>*/}
+                        </div>
+                    </div>
+                    <div className="sidebar-body__logout" onClick={this.handleLogoutClick}>
+                        <LogoutIcon />
+                        <div className="logout-message">Log Out</div>
+                    </div>
                 </div>
             </div>
         );
@@ -53,4 +69,4 @@ function mapStateToProps(state) {
     return { guessed: state.guess, pairsGuessed: state.stats.pairGuesses };
 }
 
-export default connect(mapStateToProps, { guessReset, pairGuessed })(Sidebar);
+export default connect(mapStateToProps, { guessReset, pairGuessed, deregisterUser })(Sidebar);

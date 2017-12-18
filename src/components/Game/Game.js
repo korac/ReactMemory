@@ -26,9 +26,10 @@ class Game extends Component {
     }
 
     componentWillMount() {
-        if(!this.props.username) {
-            this.props.history.push('/register');
-        }
+        // if(!this.props.username) {
+        //     this.props.history.push('/register');
+        // }
+        this.redirectIfDeregistered(this.props.username);
     }
 
     componentDidMount() {
@@ -40,13 +41,25 @@ class Game extends Component {
         document.body.classList.remove('body--blue');
     }
 
+    componentWillReceiveProps(nextProps) {
+        // if(!nextProps.username) {
+        //     this.props.history.push('/register');
+        // }
+        this.redirectIfDeregistered(nextProps.username)
+    }
+
+    redirectIfDeregistered(username) {
+        if(!username) {
+            this.props.history.push('/register');
+        }
+    }
+
     render() {
         return (
             <div className="game">
                 <Transition in={this.state.sidebar} timeout={1000}>
                     {
                         (sidebarState) => {
-                            console.log(sidebarState);
                             return <Sidebar style={{...sidebarTransitionStyles[sidebarState]}} />;
                         }
                     }
