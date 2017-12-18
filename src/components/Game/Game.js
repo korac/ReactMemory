@@ -26,9 +26,6 @@ class Game extends Component {
     }
 
     componentWillMount() {
-        // if(!this.props.username) {
-        //     this.props.history.push('/register');
-        // }
         this.redirectIfDeregistered(this.props.username);
     }
 
@@ -42,9 +39,6 @@ class Game extends Component {
     }
 
     componentWillReceiveProps(nextProps) {
-        // if(!nextProps.username) {
-        //     this.props.history.push('/register');
-        // }
         this.redirectIfDeregistered(nextProps.username)
     }
 
