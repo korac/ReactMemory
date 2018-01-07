@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { guessReset, pairGuessed, deregisterUser } from '../../actions';
+import PropTypes from 'prop-types';
 
 import ReactIcon from '../icons/ReactIcon/ReactIcon';
 import LogoutIcon from '../icons/LogoutIcon/LogoutIcon';
@@ -56,7 +57,7 @@ class Sidebar extends Component {
                     </div>
                     <div className="sidebar-body__logout" onClick={this.handleLogoutClick}>
                         <LogoutIcon />
-                        <div className="logout-message">Log Out</div>
+                        <div className="logout-message">Exit game</div>
                     </div>
                 </div>
             </div>
@@ -64,6 +65,13 @@ class Sidebar extends Component {
     }
 
 }
+
+Sidebar.propTypes = {
+    style: PropTypes.object.isRequired,
+    guessReset: PropTypes.func.isRequired,
+    pairGuessed: PropTypes.func.isRequired,
+    deregisterUser: PropTypes.func.isRequired
+};
 
 function mapStateToProps(state) {
     return { guessed: state.guess, pairsGuessed: state.stats.pairGuesses };

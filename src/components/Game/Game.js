@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { Transition } from 'react-transition-group';
+import PropTypes from 'prop-types';
 
 import Sidebar from '../Sidebar';
 import MemoryCardContainer from '../MemoryCardContainer';
@@ -64,6 +65,10 @@ class Game extends Component {
     }
 
 }
+
+Game.propTypes = {
+    username: PropTypes.string
+};
 
 function mapStateToProps(state) {
     return { username: state.stats.username };

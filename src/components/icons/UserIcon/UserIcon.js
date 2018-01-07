@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 
 const UserIcon = (props) => {
     return (
@@ -12,6 +13,10 @@ const UserIcon = (props) => {
             </svg>
         </div>
     );
+};
+
+UserIcon.propTypes = {
+    style: PropTypes.object.isRequired
 };
 
 export default UserIcon;

@@ -3,6 +3,7 @@ import { Field, reduxForm } from 'redux-form';
 import { connect } from 'react-redux';
 import { registerUser} from "../../actions";
 import { Transition } from 'react-transition-group';
+import PropTypes from 'prop-types';
 
 import SpinnerIcon from '../icons/SpinnerIcon/SpinnerIcon';
 import CardsIcon from '../icons/CardsIcon/CardsIcon';
@@ -197,6 +198,11 @@ class Register extends Component {
     }
 
 }
+
+Register.propTypes = {
+    username: PropTypes.string,
+    registerUser: PropTypes.func.isRequired
+};
 
 function mapStateToProps(state) {
     return { username: state.stats.username };

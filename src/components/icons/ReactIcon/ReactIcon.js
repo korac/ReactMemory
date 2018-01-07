@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 
 const ReactIcon = (props) => {
     return (
@@ -8,6 +9,10 @@ const ReactIcon = (props) => {
             </svg>
         </div>
     );
+};
+
+ReactIcon.propTypes = {
+    color: PropTypes.string.isRequired
 };
 
 export default ReactIcon;
