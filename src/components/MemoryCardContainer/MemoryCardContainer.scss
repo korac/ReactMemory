@@ -1,8 +1,12 @@
-//.cards-container {
-//    display: grid;
-//    grid-template: repeat(2, 262px) / repeat(3, 182px);
-//    grid-gap: 20px 30px;
-//    justify-content: center;
-//    align-content: center;
-//    padding: 40px;
-//}
+.main-window {
+    overflow-y: scroll;
+}
+
+.cards-container {
+    display: grid;
+    grid-template: repeat(4, 262px) / repeat(4, 182px);
+    grid-gap: 20px 30px;
+    justify-content: center;
+    align-content: center;
+    padding: 40px;
+}

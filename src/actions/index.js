@@ -1,4 +1,10 @@
-import { USER_REGISTER, GUESS_CARD, GUESS_RESET, INCREMENT_PAIR_COUNTER, USER_DEREGISTER } from './types';
+import {
+    USER_REGISTER,
+    GUESS_CARD,
+    GUESS_RESET,
+    USER_DEREGISTER,
+    PAIR_GUESSED
+} from './types';
 
 export function registerUser(username, history) {
     return dispatch => {
@@ -15,16 +21,18 @@ export function deregisterUser() {
 }
 
 export function guessCard(cardId) {
-    return {
-        type: GUESS_CARD,
-        payload: cardId
-    };
-}
+    return (dispatch, getState) => {
+        const { previousGuess } = getState().guess;
 
-export function guessReset() {
-    return { type: GUESS_RESET };
-}
+        if(previousGuess && previousGuess === cardId) {
+            dispatch({ type: PAIR_GUESSED, payload: cardId });
+        } else if(previousGuess) {
+            setTimeout(() => {
+                dispatch({ type: GUESS_RESET, payload: cardId });
+            }, 700);
+        } else {
+            dispatch({ type: GUESS_CARD, payload: cardId });
+        }
+    }
 
-export function pairGuessed() {
-    return { type: INCREMENT_PAIR_COUNTER };
 }

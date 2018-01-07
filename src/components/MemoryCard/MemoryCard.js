@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import * as actions from '../../actions';
+import { guessCard} from "../../actions/index";
 
 import background from './blue.jpg';
 
@@ -8,18 +8,27 @@ class MemoryCard extends Component {
     constructor(props) {
         super(props);
 
-        this.state = { flipped: false, cardId: this.props.cardId };
+        this.state = { flipped: false, cardId: this.props.cardId, guessed: false };
         this.flipCard = this.flipCard.bind(this);
     }
 
+    componentWillReceiveProps(nextProps) {
+        if(nextProps.pairsGuessed && nextProps.pairsGuessed.indexOf(this.props.cardId) > -1) {
+            this.setState({ guessed: true });
+        } else if(!nextProps.previousGuess && this.state.flipped) {
+            this.setState({ flipped: false });
+        }
+    }
+
     flipCard() {
-        this.setState({ flipped: !this.state.flipped });
-        this.props.guessCard(this.state.cardId);
-        // console.log(`Card Id je: ${this.state.cardId}`)
+        if(!this.state.guessed) {
+            this.setState({ flipped: !this.state.flipped });
+            this.props.guessCard(this.state.cardId);
+        }
     }
 
     cardStateStyle() {
-        return this.state.flipped ? 'memory-card memory-card--flipped' : 'memory-card'
+        return this.state.flipped || this.state.guessed ? 'memory-card memory-card--flipped' : 'memory-card'
     }
 
     render() {
@@ -39,4 +48,8 @@ class MemoryCard extends Component {
 
 }
 
-export default connect(null, actions)(MemoryCard);
+function mapStateToProps(state) {
+    return { previousGuess: state.guess.previousGuess, pairsGuessed: state.guess.pairsGuessed };
+}
+
+export default connect(mapStateToProps, { guessCard })(MemoryCard);

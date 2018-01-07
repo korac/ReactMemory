@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import MemoryCard from "../MemoryCard";
-import Wrapper from './Wrapper';
 
 import CssIcon from '../icons/CssIcon/CssIcon';
 import RailsIcon from '../icons/RailsIcon/RailsIcon';
@@ -15,7 +14,7 @@ class MemoryCardContainer extends Component {
     constructor(props) {
         super(props);
 
-        this.state = { cardsNumber: 6 };
+        this.state = { cardsNumber: 16 };
     }
 
     getIcons() {
@@ -49,9 +48,11 @@ class MemoryCardContainer extends Component {
 
     render() {
         return (
-            <Wrapper no={this.state.cardsNumber}>
-                {this.shuffleCards(this.renderCards())}
-            </Wrapper>
+            <div className="main-window" style={{...this.props.style}}>
+                <div className="cards-container">
+                    {this.shuffleCards(this.renderCards())}
+                </div>
+            </div>
         );
     }
 

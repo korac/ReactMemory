@@ -5,25 +5,13 @@ import PropTypes from 'prop-types';
 
 import Sidebar from '../Sidebar';
 import MemoryCardContainer from '../MemoryCardContainer';
-
-const sidebarTransitionStyles = {
-    entering: {
-        opacity: 1,
-        transition: 'opacity 1s ease'
-    },
-    entered: {
-        opacity: 1,
-    },
-    exited: {
-        opacity: 0
-    }
-};
+import { sidebarTransitionStyles, containerTransitionStyles } from "../MemoryCardContainer/animationStyles";
 
 class Game extends Component {
     constructor(props) {
         super(props);
 
-        this.state = { sidebar: false};
+        this.state = { game: false};
     }
 
     componentWillMount() {
@@ -32,7 +20,7 @@ class Game extends Component {
 
     componentDidMount() {
         document.body.classList.add('body--blue');
-        this.setState({ sidebar: true });
+        this.setState({ game: true });
     }
 
     componentWillUnmount() {
@@ -40,7 +28,7 @@ class Game extends Component {
     }
 
     componentWillReceiveProps(nextProps) {
-        this.redirectIfDeregistered(nextProps.username)
+        this.redirectIfDeregistered(nextProps.username);
     }
 
     redirectIfDeregistered(username) {
@@ -52,14 +40,20 @@ class Game extends Component {
     render() {
         return (
             <div className="game">
-                <Transition in={this.state.sidebar} timeout={1000}>
+                <Transition in={this.state.game} timeout={1000}>
                     {
                         (sidebarState) => {
                             return <Sidebar style={{...sidebarTransitionStyles[sidebarState]}} />;
                         }
                     }
                 </Transition>
-                {/*<MemoryCardContainer />*/}
+                <Transition in={this.state.game} timeout={1000}>
+                    {
+                        (containerState) => {
+                            return <MemoryCardContainer style={{...containerTransitionStyles[containerState]}} />;
+                        }
+                    }
+                </Transition>
             </div>
         );
     }
