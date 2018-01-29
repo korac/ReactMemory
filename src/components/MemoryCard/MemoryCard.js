@@ -8,7 +8,7 @@ class MemoryCard extends Component {
     constructor(props) {
         super(props);
 
-        this.state = { flipped: false, cardId: this.props.cardId, guessed: false };
+        this.state = { flipped: false, guessed: false };
         this.flipCard = this.flipCard.bind(this);
     }
 
@@ -23,7 +23,7 @@ class MemoryCard extends Component {
     flipCard() {
         if(!this.state.guessed) {
             this.setState({ flipped: !this.state.flipped });
-            this.props.guessCard(this.state.cardId);
+            this.props.guessCard(this.props.cardId, this.props.cardKey);
         }
     }
 
@@ -49,7 +49,10 @@ class MemoryCard extends Component {
 }
 
 function mapStateToProps(state) {
-    return { previousGuess: state.guess.previousGuess, pairsGuessed: state.guess.pairsGuessed };
+    return {
+        previousGuess: state.guess.previousGuess,
+        pairsGuessed: state.guess.pairsGuessed
+    };
 }
 
 export default connect(mapStateToProps, { guessCard })(MemoryCard);

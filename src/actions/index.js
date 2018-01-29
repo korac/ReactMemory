@@ -15,24 +15,23 @@ export function registerUser(username, history) {
 }
 
 export function deregisterUser() {
-    return {
-        type: USER_DEREGISTER
-    }
+    return { type: USER_DEREGISTER };
 }
 
-export function guessCard(cardId) {
+export function guessCard(cardId, cardKey) {
     return (dispatch, getState) => {
         const { previousGuess } = getState().guess;
 
-        if(previousGuess && previousGuess === cardId) {
+        if(previousGuess && previousGuess.cardKey === cardKey) {
+            dispatch({ type: GUESS_RESET, payload: cardId });
+        } else if(previousGuess && previousGuess.cardId === cardId) {
             dispatch({ type: PAIR_GUESSED, payload: cardId });
         } else if(previousGuess) {
             setTimeout(() => {
                 dispatch({ type: GUESS_RESET, payload: cardId });
             }, 700);
         } else {
-            dispatch({ type: GUESS_CARD, payload: cardId });
+            dispatch({ type: GUESS_CARD, payload: { cardId, cardKey} });
         }
     }
-
 }

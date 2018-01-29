@@ -62,10 +62,6 @@ class Game extends Component {
 
 // TODO - https://en.wikipedia.org/wiki/Concentration_(game)
 
-// TODO - fix double click on the same card!!
-
-// TODO - fix colors of icons
-
 Game.propTypes = {
     username: PropTypes.string
 };

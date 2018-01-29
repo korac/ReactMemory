@@ -88,8 +88,8 @@ class MemoryCardContainer extends Component {
         const cards = [];
         const icons = this.getIcons();
         for(let i = 0; i < this.state.cardsNumber / 2; i++) {
-            const first_card = <MemoryCard key={`first-card-${i}`} cardId={`card-${i}`}>{icons[i]}</MemoryCard>;
-            const second_card = <MemoryCard key={`second-card-${i}`} cardId={`card-${i}`}>{icons[i]}</MemoryCard>;
+            const first_card = <MemoryCard key={`first-card-${i}`} cardKey={`first-card-${i}`} cardId={`card-${i}`}>{icons[i]}</MemoryCard>;
+            const second_card = <MemoryCard key={`second-card-${i}`} cardKey={`second-card-${i}`} cardId={`card-${i}`}>{icons[i]}</MemoryCard>;
             cards.push(first_card, second_card);
         }
         return cards;
