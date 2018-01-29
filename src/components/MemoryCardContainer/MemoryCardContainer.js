@@ -6,6 +6,7 @@ import RailsIcon from '../icons/RailsIcon/RailsIcon';
 import ReactIcon from '../icons/ReactIcon/ReactIcon';
 import HtmlIcon from '../icons/HtmlIcon/HtmlIcon';
 import JsIcon from '../icons/JsIcon/JsIcon';
+import AngularIcon from '../icons/AngularIcon/AngularIcon';
 import PyIcon from '../icons/PyIcon/PyIcon';
 import PhpIcon from '../icons/PhpIcon/PhpIcon';
 import JavaIcon from '../icons/JavaIcon/JavaIcon';
@@ -20,7 +21,6 @@ import PostgresIcon from "../icons/PostgresIcon/PostgresIcon";
 import RedisIcon from "../icons/RedisIcon/RedisIcon";
 import AppleIcon from "../icons/AppleIcon/AppleIcon";
 import AWSIcon from "../icons/AWSIcon/AWSIcon";
-import ChromeIcon from "../icons/ChromeIcon/ChromeIcon";
 import DjangoIcon from "../icons/DjangoIcon/DjangoIcon";
 import DotNetIcon from "../icons/DotNetIcon/DotNetIcon";
 import FacebookIcon from "../icons/FacebookIcon/FacebookIcon";
@@ -50,6 +50,7 @@ class MemoryCardContainer extends Component {
             <PyIcon />,
             <ReactIcon />,
             <RailsIcon />,
+            <AngularIcon />,
             <HtmlIcon />,
             <CssIcon />,
             <JavaIcon />,
@@ -65,7 +66,6 @@ class MemoryCardContainer extends Component {
             <RedisIcon />,
             <AppleIcon />,
             <AWSIcon />,
-            <ChromeIcon />,
             <DjangoIcon />,
             <DotNetIcon />,
             <FacebookIcon />,
