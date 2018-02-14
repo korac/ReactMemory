@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { deregisterUser } from '../../actions';
 import PropTypes from 'prop-types';
+import { Link } from 'react-router-dom';
 
 import ReactIcon from '../icons/ReactIcon/ReactIcon';
 import LogoutIcon from '../icons/LogoutIcon/LogoutIcon';
@@ -31,6 +32,9 @@ class Sidebar extends Component {
                             <div className="stats-info">Pairs Guessed:</div>
                             <div className="pairs__guessed">{this.props.pairsGuessed || 0}</div>
                         </div>
+                    </div>
+                    <div>
+                        <Link to="/register">Register</Link>>
                     </div>
                     <div className="sidebar-body__logout" onClick={this.handleLogoutClick}>
                         <LogoutIcon />

@@ -45,6 +45,7 @@ class Register extends Component {
         if(nextProps.username) {
             this.setState({ registering: false });
         }
+        this.redirectIfRegistered(this.props.username);
     }
 
     redirectIfRegistered(username = this.props.username) {
@@ -113,6 +114,79 @@ class Register extends Component {
         return name;
     }
 
+    renderCardIcons() {
+        return (
+            <div className="card-content__icon">
+                <Transition in={this.state.registering} timeout={0}>
+                    {
+                        (spinnerState) => {
+                            return <SpinnerIcon style={{...spinnerTransitionStyles[spinnerState]}} />;
+                        }
+                    }
+                </Transition>
+                <Transition in={!!this.props.username} timeout={0}>
+                    {
+                        (cardsState) => {
+                            return <CardsIcon style={{...cardsTransitionStyles[cardsState]}} />;
+                        }
+                    }
+                </Transition>
+                <Transition in={!!this.props.username} timeout={0}>
+                    {
+                        (userState) => {
+                            return <UserIcon style={{...userTransitionStyles[userState]}} />;
+                        }
+                    }
+                </Transition>
+            </div>
+        );
+    }
+
+    renderCardForm(handleSubmit, valid) {
+        return (
+            <form className="card-content__form" onSubmit={handleSubmit(this.handleFormSubmit)}>
+                <Transition in={!!this.props.username} timeout={300}>
+                    {
+                        (titleState) => {
+                            return <div className="form-title" style={{...defaultTitleStyles[titleState]}}>Game Register</div>;
+                        }
+                    }
+                </Transition>
+                <Transition in={!!this.props.username} timeout={100} mountOnEnter={true}>
+                    {
+                        (titleState) => {
+                            return <div className="form-title user-registered-content" style={{...userTitleStyles[titleState]}}>{`Welcome, ${this.tidyName(this.props.username)}!`}</div>;
+                        }
+                    }
+                </Transition>
+                <Transition in={!!this.props.username} timeout={300}>
+                    {
+                        (descriptionState) => {
+                            return (
+                                <div className="form-description" style={{...defaultDescriptionStyles[descriptionState]}}>
+                                    Please enter your name before the game starts. <span role="img" aria-label="emoji">🚀</span>
+                                </div>
+                            );
+                        }
+                    }
+                </Transition>
+                <Transition in={!!this.props.username} timeout={200} mountOnEnter={true}>
+                    {
+                        (descriptionState) => {
+                            return (
+                                <div className="form-description user-registered-content" style={{...userDescriptionStyles[descriptionState]}}>
+                                    Thanks for your registration. Here's a cookie for you <span role="img" aria-label="emoji">🍪</span>
+                                    <br/>Start the game whenever you feel ready!
+                                </div>
+                            );
+                        }
+                    }
+                </Transition>
+                {this.renderFormContent(valid)}
+            </form>
+        );
+    }
+
     render() {
         const { handleSubmit, valid } = this.props;
 
@@ -124,69 +198,8 @@ class Register extends Component {
                             return (
                                 <div className="register-card" style={{...registerTransitionStyles[state]}}>
                                     <div className="card-content">
-                                        <div className="card-content__icon">
-                                            <Transition in={this.state.registering} timeout={0}>
-                                                {
-                                                    (spinnerState) => {
-                                                        return <SpinnerIcon style={{...spinnerTransitionStyles[spinnerState]}} />;
-                                                    }
-                                                }
-                                            </Transition>
-                                            <Transition in={!!this.props.username} timeout={0}>
-                                                {
-                                                    (cardsState) => {
-                                                        return <CardsIcon style={{...cardsTransitionStyles[cardsState]}} />;
-                                                    }
-                                                }
-                                            </Transition>
-                                            <Transition in={!!this.props.username} timeout={0}>
-                                                {
-                                                    (userState) => {
-                                                        return <UserIcon style={{...userTransitionStyles[userState]}} />;
-                                                    }
-                                                }
-                                            </Transition>
-                                        </div>
-                                        <form className="card-content__form" onSubmit={handleSubmit(this.handleFormSubmit)}>
-                                            <Transition in={!!this.props.username} timeout={300}>
-                                                {
-                                                    (titleState) => {
-                                                        return <div className="form-title" style={{...defaultTitleStyles[titleState]}}>Game Register</div>;
-                                                    }
-                                                }
-                                            </Transition>
-                                            <Transition in={!!this.props.username} timeout={100} mountOnEnter={true}>
-                                                {
-                                                    (titleState) => {
-                                                        return <div className="form-title user-registered-content" style={{...userTitleStyles[titleState]}}>{`Welcome, ${this.tidyName(this.props.username)}!`}</div>;
-                                                    }
-                                                }
-                                            </Transition>
-                                            <Transition in={!!this.props.username} timeout={300}>
-                                                {
-                                                    (descriptionState) => {
-                                                        return (
-                                                            <div className="form-description" style={{...defaultDescriptionStyles[descriptionState]}}>
-                                                                Please enter your name before the game starts. <span role="img" aria-label="emoji">🚀</span>
-                                                            </div>
-                                                        );
-                                                    }
-                                                }
-                                            </Transition>
-                                            <Transition in={!!this.props.username} timeout={200} mountOnEnter={true}>
-                                                {
-                                                    (descriptionState) => {
-                                                        return (
-                                                            <div className="form-description user-registered-content" style={{...userDescriptionStyles[descriptionState]}}>
-                                                                Thanks for your registration. Here's a cookie for you <span role="img" aria-label="emoji">🍪</span>
-                                                                <br/>Start the game whenever you feel ready!
-                                                            </div>
-                                                        );
-                                                    }
-                                                }
-                                            </Transition>
-                                            {this.renderFormContent(valid)}
-                                        </form>
+                                        {this.renderCardIcons()}
+                                        {this.renderCardForm(handleSubmit, valid)}
                                     </div>
                                 </div>
                             );

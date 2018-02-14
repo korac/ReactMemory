@@ -9,12 +9,24 @@ import {
 export function registerUser(username, history) {
     return dispatch => {
         setTimeout(() => {
+            localStorage.setItem('user', username);
             dispatch({type: USER_REGISTER, payload: username});
         }, 1500);
     }
 }
 
 export function deregisterUser() {
+    return { type: USER_DEREGISTER };
+}
+
+export function checkIfRegistered() {
+    const username = localStorage.user;
+    if(username) {
+        console.log('user exists!');
+        return { type: USER_REGISTER, payload: 'kox' };
+    }
+
+    console.log('no user');
     return { type: USER_DEREGISTER };
 }
 
