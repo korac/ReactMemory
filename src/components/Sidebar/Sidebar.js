@@ -1,11 +1,11 @@
-import React, { Component } from 'react';
-import { connect } from 'react-redux';
-import { deregisterUser } from '../../actions';
-import PropTypes from 'prop-types';
-import { Link } from 'react-router-dom';
+import React, { Component } from "react";
+import { connect } from "react-redux";
+import { userLogout } from "../../actions";
+import PropTypes from "prop-types";
+import { Link } from "react-router-dom";
 
-import ReactIcon from '../icons/ReactIcon/ReactIcon';
-import LogoutIcon from '../icons/LogoutIcon/LogoutIcon';
+import ReactIcon from "../icons/ReactIcon/ReactIcon";
+import LogoutIcon from "../icons/LogoutIcon/LogoutIcon";
 
 class Sidebar extends Component {
     constructor(props) {
@@ -16,7 +16,7 @@ class Sidebar extends Component {
     }
 
     handleLogoutClick() {
-        this.props.deregisterUser();
+        this.props.userLogout();
     }
 
     render() {
@@ -33,9 +33,6 @@ class Sidebar extends Component {
                             <div className="pairs__guessed">{this.props.pairsGuessed || 0}</div>
                         </div>
                     </div>
-                    <div>
-                        <Link to="/register">Register</Link>>
-                    </div>
                     <div className="sidebar-body__logout" onClick={this.handleLogoutClick}>
                         <LogoutIcon />
                         <div className="logout-message">Exit game</div>
@@ -49,11 +46,11 @@ class Sidebar extends Component {
 
 Sidebar.propTypes = {
     style: PropTypes.object.isRequired,
-    deregisterUser: PropTypes.func.isRequired
+    userLogout: PropTypes.func.isRequired
 };
 
 function mapStateToProps(state) {
     return { guessed: state.guess, pairsGuessed: state.guess.pairsGuessed.length };
 }
 
-export default connect(mapStateToProps, { deregisterUser })(Sidebar);
+export default connect(mapStateToProps, { userLogout })(Sidebar);

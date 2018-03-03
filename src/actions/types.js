@@ -1,6 +1,7 @@
 // USER action types
-export const USER_REGISTER = 'user_register';
-export const USER_DEREGISTER = 'user_deregister';
+export const REGISTER_USER = 'register_user';
+export const AUTH_USER = 'auth_user';
+export const UNAUTH_USER = 'unauth_user';
 
 // CARD action types
 export const GUESS_CARD = 'guess_card';

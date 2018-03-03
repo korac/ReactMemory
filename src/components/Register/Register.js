@@ -1,12 +1,12 @@
-import React, { Component } from 'react';
-import { Field, reduxForm } from 'redux-form';
-import { connect } from 'react-redux';
-import { registerUser} from "../../actions";
-import { Transition } from 'react-transition-group';
-import PropTypes from 'prop-types';
+import React, { Component } from "react";
+import { Field, reduxForm } from "redux-form";
+import { connect } from "react-redux";
+import { registerUser, userLogin } from "../../actions";
+import { Transition } from "react-transition-group";
+import PropTypes from "prop-types";
 
-import SpinnerIcon from '../icons/SpinnerIcon/SpinnerIcon';
-import CardsIcon from '../icons/CardsIcon/CardsIcon';
+import SpinnerIcon from "../icons/SpinnerIcon/SpinnerIcon";
+import CardsIcon from "../icons/CardsIcon/CardsIcon";
 import UserIcon from "../icons/UserIcon/UserIcon";
 import {
     spinnerTransitionStyles,
@@ -26,11 +26,7 @@ class Register extends Component {
         this.state = { registering: false, registered: false };
         this.handleFormSubmit = this.handleFormSubmit.bind(this);
         this.handleStartClick = this.handleStartClick.bind(this);
-        this.redirectIfRegistered = this.redirectIfRegistered.bind(this);
-    }
-
-    componentWillMount() {
-        this.redirectIfRegistered(this.props.username);
+        this.handleOnEnteredTransition = this.handleOnEnteredTransition.bind(this);
     }
 
     componentDidMount() {
@@ -45,13 +41,10 @@ class Register extends Component {
         if(nextProps.username) {
             this.setState({ registering: false });
         }
-        this.redirectIfRegistered(this.props.username);
     }
 
-    redirectIfRegistered(username = this.props.username) {
-        if(username) {
-            this.props.history.push('/');
-        }
+    handleOnEnteredTransition() {
+        this.props.userLogin();
     }
 
     renderFormContent(valid) {
@@ -192,7 +185,7 @@ class Register extends Component {
 
         return (
             <div className="register-wrapper">
-                <Transition in={this.state.registered} timeout={450} onEntered={this.redirectIfRegistered}>
+                <Transition in={this.state.registered} timeout={450} onEntered={this.handleOnEnteredTransition}>
                     {
                         (state) => {
                             return (
@@ -235,5 +228,5 @@ export default reduxForm({
     validate,
     form: 'RegisterForm'
 })(
-    connect(mapStateToProps, { registerUser })(Register)
+    connect(mapStateToProps, { registerUser, userLogin })(Register)
 );

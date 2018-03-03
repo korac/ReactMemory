@@ -14,10 +14,6 @@ class Game extends Component {
         this.state = { game: false};
     }
 
-    componentWillMount() {
-        this.redirectIfDeregistered(this.props.username);
-    }
-
     componentDidMount() {
         document.body.classList.add('body--blue');
         this.setState({ game: true });
@@ -25,16 +21,6 @@ class Game extends Component {
 
     componentWillUnmount() {
         document.body.classList.remove('body--blue');
-    }
-
-    componentWillReceiveProps(nextProps) {
-        this.redirectIfDeregistered(nextProps.username);
-    }
-
-    redirectIfDeregistered(username) {
-        if(!username) {
-            this.props.history.push('/register');
-        }
     }
 
     render() {

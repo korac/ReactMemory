@@ -1,33 +1,39 @@
 import {
-    USER_REGISTER,
+    REGISTER_USER,
     GUESS_CARD,
     GUESS_RESET,
-    USER_DEREGISTER,
-    PAIR_GUESSED
+    UNAUTH_USER,
+    PAIR_GUESSED,
+    AUTH_USER
 } from './types';
 
 export function registerUser(username, history) {
     return dispatch => {
         setTimeout(() => {
-            localStorage.setItem('user', username);
-            dispatch({type: USER_REGISTER, payload: username});
+            localStorage.setItem('username', username);
+            dispatch({type: REGISTER_USER, payload: username});
         }, 1500);
     }
 }
 
-export function deregisterUser() {
-    return { type: USER_DEREGISTER };
+export function userLogout() {
+    localStorage.removeItem('username');
+    return { type: UNAUTH_USER };
+}
+
+export function userLogin() {
+    return { type: AUTH_USER };
 }
 
 export function checkIfRegistered() {
     const username = localStorage.user;
     if(username) {
         console.log('user exists!');
-        return { type: USER_REGISTER, payload: 'kox' };
+        return { type: REGISTER_USER, payload: 'kox' };
     }
 
     console.log('no user');
-    return { type: USER_DEREGISTER };
+    return { type: UNAUTH_USER };
 }
 
 export function guessCard(cardId, cardKey) {

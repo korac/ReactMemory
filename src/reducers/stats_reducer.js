@@ -1,14 +1,17 @@
 import {
-    USER_DEREGISTER,
-    USER_REGISTER
+    AUTH_USER,
+    UNAUTH_USER,
+    REGISTER_USER
 } from "../actions/types";
 
-export default function(state = {}, action) {
+export default function(state = { authenticated: false }, action) {
     switch(action.type) {
-        case USER_REGISTER:
+        case REGISTER_USER:
             return { ...state, username: action.payload };
-        case USER_DEREGISTER:
-            return { ...state, username: null };
+        case AUTH_USER:
+            return { ...state, authenticated: true };
+        case UNAUTH_USER:
+            return { ...state, username: null, authenticated: false };
         default:
             return state;
     }
