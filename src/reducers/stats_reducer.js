@@ -1,17 +1,17 @@
-import { INCREMENT_PAIR_COUNTER, USER_DEREGISTER, USER_REGISTER } from "../actions/types";
+import {
+    AUTH_USER,
+    UNAUTH_USER,
+    REGISTER_USER
+} from "../actions/types";
 
-export default function(state = { pairGuesses: 0 }, action) {
+export default function(state = { authenticated: false }, action) {
     switch(action.type) {
-        case USER_REGISTER:
+        case REGISTER_USER:
             return { ...state, username: action.payload };
-        case USER_DEREGISTER:
-            return { ...state, username: null };
-        case INCREMENT_PAIR_COUNTER:
-            console.log('------');
-            const a = { ...state, pairGuesses: state.pairGuesses++ };
-            console.log(a);
-            console.log('------');
-            return { ...state, pairGuesses: state.pairGuesses++ };
+        case AUTH_USER:
+            return { ...state, authenticated: true };
+        case UNAUTH_USER:
+            return { ...state, username: null, authenticated: false };
         default:
             return state;
     }
