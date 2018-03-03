@@ -41,7 +41,7 @@ class MemoryCardContainer extends Component {
     constructor(props) {
         super(props);
 
-        this.state = { cardsNumber: 70 };
+        this.state = { cardsNumber: 20 };
     }
 
     getIcons() {

@@ -23,18 +23,3 @@ function mapStateToProps(state) {
 }
 
 export default withRouter(connect(mapStateToProps)(App));
-
-// <Route exact path='/'
-//        render={routeProps => (
-//            this.props.username ? <Game {...routeProps} /> : <Redirect to="/register" />
-//        )}
-//        key="game-component"
-// />,
-//     <Route exact path='/register'
-//            render={routeProps => {
-//                console.log('aaa');
-//                return (
-//                    !this.props.username ? <Register {...routeProps} /> : <Redirect to="/" />
-//                )}}
-//            key="register-component"
-//     />
