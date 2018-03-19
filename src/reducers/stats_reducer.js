@@ -4,7 +4,7 @@ import {
     REGISTER_USER
 } from "../actions/types";
 
-export default function(state = { authenticated: false }, action) {
+export default function(state = { authenticated: false, totalCardPairs: 5 }, action) {
     switch(action.type) {
         case REGISTER_USER:
             return { ...state, username: action.payload };

@@ -1,8 +1,7 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
-import { userLogout } from "../../actions";
+import { userLogout, showWinModal } from "../../actions";
 import PropTypes from "prop-types";
-import { Link } from "react-router-dom";
 
 import ReactIcon from "../icons/ReactIcon/ReactIcon";
 import LogoutIcon from "../icons/LogoutIcon/LogoutIcon";
@@ -13,6 +12,12 @@ class Sidebar extends Component {
 
         this.state = { currentlyGuessedPair: [] };
         this.handleLogoutClick = this.handleLogoutClick.bind(this);
+    }
+
+    componentWillReceiveProps(nextProps) {
+        if(nextProps.pairsGuessed === this.props.totalCardPairs) {
+            this.props.showWinModal();
+        }
     }
 
     handleLogoutClick() {
@@ -50,7 +55,11 @@ Sidebar.propTypes = {
 };
 
 function mapStateToProps(state) {
-    return { guessed: state.guess, pairsGuessed: state.guess.pairsGuessed.length };
+    return {
+        guessed: state.guess,
+        pairsGuessed: state.guess.pairsGuessed.length,
+        totalCardPairs: state.stats.totalCardPairs
+    };
 }
 
-export default connect(mapStateToProps, { userLogout })(Sidebar);
+export default connect(mapStateToProps, { userLogout, showWinModal })(Sidebar);

@@ -36,7 +36,7 @@ class Game extends Component {
                 <Transition in={this.state.game} timeout={1000}>
                     {
                         (containerState) => {
-                            return <MemoryCardContainer style={{...containerTransitionStyles[containerState]}} />;
+                            return <MemoryCardContainer style={{...containerTransitionStyles[containerState]}} totalCardPairs={this.props.totalCardPairs} />;
                         }
                     }
                 </Transition>
@@ -52,8 +52,11 @@ Game.propTypes = {
     username: PropTypes.string
 };
 
-function mapStateToProps(state) {
-    return { username: state.stats.username };
+function mapStateToProps({ stats }) {
+    return {
+        username: stats.username,
+        totalCardPairs: stats.totalCardPairs
+    };
 }
 
 export default connect(mapStateToProps)(Game);

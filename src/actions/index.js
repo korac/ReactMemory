@@ -25,16 +25,16 @@ export function userLogin() {
     return { type: AUTH_USER };
 }
 
-export function checkIfRegistered() {
-    const username = localStorage.user;
-    if(username) {
-        console.log('user exists!');
-        return { type: REGISTER_USER, payload: 'kox' };
-    }
-
-    console.log('no user');
-    return { type: UNAUTH_USER };
-}
+// export function checkIfRegistered() {
+//     const username = localStorage.user;
+//     if(username) {
+//         console.log('user exists!');
+//         return { type: REGISTER_USER, payload: 'kox' };
+//     }
+//
+//     console.log('no user');
+//     return { type: UNAUTH_USER };
+// }
 
 export function guessCard(cardId, cardKey) {
     return (dispatch, getState) => {
@@ -52,4 +52,12 @@ export function guessCard(cardId, cardKey) {
             dispatch({ type: GUESS_CARD, payload: { cardId, cardKey} });
         }
     }
+}
+
+export function showWinModal() {
+    return { type: 'showWinModal' };
+}
+
+export function hideModal() {
+    return { type: 'hideModal' };
 }

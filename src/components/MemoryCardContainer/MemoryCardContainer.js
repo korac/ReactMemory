@@ -41,7 +41,11 @@ class MemoryCardContainer extends Component {
     constructor(props) {
         super(props);
 
-        this.state = { cardsNumber: 20 };
+        this.state = { totalCardPairs: 0 };
+    }
+
+    componentDidMount() {
+        this.setState({ totalCardPairs: this.props.totalCardPairs });
     }
 
     getIcons() {
@@ -87,7 +91,7 @@ class MemoryCardContainer extends Component {
     renderCards() {
         const cards = [];
         const icons = this.getIcons();
-        for(let i = 0; i < this.state.cardsNumber / 2; i++) {
+        for(let i = 0; i < this.state.totalCardPairs; i++) {
             const first_card = <MemoryCard key={`first-card-${i}`} cardKey={`first-card-${i}`} cardId={`card-${i}`}>{icons[i]}</MemoryCard>;
             const second_card = <MemoryCard key={`second-card-${i}`} cardKey={`second-card-${i}`} cardId={`card-${i}`}>{icons[i]}</MemoryCard>;
             cards.push(first_card, second_card);
