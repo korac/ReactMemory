@@ -27,6 +27,15 @@
     "build-js": "react-scripts build",
     "build": "npm-run-all build-css build-js",
     "test": "react-scripts test --env=jsdom",
-    "eject": "react-scripts eject"
+    "eject": "react-scripts eject",
+    "precommit": "pretty-quick --staged",
+    "lint": "eslint . *.{js,jsx} --quiet --fix"
+  },
+  "devDependencies": {
+    "eslint-config-prettier": "^3.1.0",
+    "eslint-plugin-prettier": "^3.0.0",
+    "husky": "^1.1.1",
+    "prettier": "1.14.3",
+    "pretty-quick": "^1.7.0"
   }
 }

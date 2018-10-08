@@ -1,3 +1,3 @@
-import GameOverModal from "./GameOverModal";
+import GameOverModal from './GameOverModal';
 
 export default GameOverModal;

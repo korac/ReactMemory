@@ -1,28 +1,28 @@
 import {
-    REGISTER_USER,
-    GUESS_CARD,
-    GUESS_RESET,
-    UNAUTH_USER,
-    PAIR_GUESSED,
-    AUTH_USER
+  REGISTER_USER,
+  GUESS_CARD,
+  GUESS_RESET,
+  UNAUTH_USER,
+  PAIR_GUESSED,
+  AUTH_USER
 } from './types';
 
 export function registerUser(username, history) {
-    return dispatch => {
-        setTimeout(() => {
-            localStorage.setItem('username', username);
-            dispatch({type: REGISTER_USER, payload: username});
-        }, 1500);
-    }
+  return dispatch => {
+    setTimeout(() => {
+      localStorage.setItem('username', username);
+      dispatch({ type: REGISTER_USER, payload: username });
+    }, 1500);
+  };
 }
 
 export function userLogout() {
-    localStorage.removeItem('username');
-    return { type: UNAUTH_USER };
+  localStorage.removeItem('username');
+  return { type: UNAUTH_USER };
 }
 
 export function userLogin() {
-    return { type: AUTH_USER };
+  return { type: AUTH_USER };
 }
 
 // export function checkIfRegistered() {
@@ -37,27 +37,27 @@ export function userLogin() {
 // }
 
 export function guessCard(cardId, cardKey) {
-    return (dispatch, getState) => {
-        const { previousGuess } = getState().guess;
+  return (dispatch, getState) => {
+    const { previousGuess } = getState().guess;
 
-        if(previousGuess && previousGuess.cardKey === cardKey) {
-            dispatch({ type: GUESS_RESET, payload: cardId });
-        } else if(previousGuess && previousGuess.cardId === cardId) {
-            dispatch({ type: PAIR_GUESSED, payload: cardId });
-        } else if(previousGuess) {
-            setTimeout(() => {
-                dispatch({ type: GUESS_RESET, payload: cardId });
-            }, 700);
-        } else {
-            dispatch({ type: GUESS_CARD, payload: { cardId, cardKey} });
-        }
+    if (previousGuess && previousGuess.cardKey === cardKey) {
+      dispatch({ type: GUESS_RESET, payload: cardId });
+    } else if (previousGuess && previousGuess.cardId === cardId) {
+      dispatch({ type: PAIR_GUESSED, payload: cardId });
+    } else if (previousGuess) {
+      setTimeout(() => {
+        dispatch({ type: GUESS_RESET, payload: cardId });
+      }, 700);
+    } else {
+      dispatch({ type: GUESS_CARD, payload: { cardId, cardKey } });
     }
+  };
 }
 
 export function showWinModal() {
-    return { type: 'showWinModal' };
+  return { type: 'showWinModal' };
 }
 
 export function hideModal() {
-    return { type: 'hideModal' };
+  return { type: 'hideModal' };
 }
