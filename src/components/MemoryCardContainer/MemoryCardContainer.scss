@@ -1,12 +1,15 @@
-.main-window {
-    overflow-y: scroll;
-}
+// DEPRECATED IN FAVOR OF REACT_JSS
+// SCHEDULED FOR REMOVAL
 
-.cards-container {
-    display: grid;
-    grid-template: repeat(4, 262px) / repeat(4, 182px);
-    grid-gap: 20px 30px;
-    justify-content: center;
-    align-content: center;
-    padding: 40px;
-}
+//.main-window {
+//    overflow-y: scroll;
+//}
+//
+//.cards-container {
+//    display: grid;
+//    grid-template: repeat(4, 262px) / repeat(4, 182px);
+//    grid-gap: 20px 30px;
+//    justify-content: center;
+//    align-content: center;
+//    padding: 40px;
+//}

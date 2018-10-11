@@ -1,4 +1,4 @@
 import MemoryCardContainer from './MemoryCardContainer';
-import './MemoryCardContainer.css';
+// import './MemoryCardContainer.css';
 
 export default MemoryCardContainer;

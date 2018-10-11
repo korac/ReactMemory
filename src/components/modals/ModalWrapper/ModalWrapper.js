@@ -1,4 +1,7 @@
 import React from 'react';
+import injectSheet from 'react-jss';
+
+import styles from './ModalWrapper.styles';
 
 const ModalWrapper = props => {
   const handleBackgroundClick = e => {
@@ -8,17 +11,18 @@ const ModalWrapper = props => {
   };
 
   const HeaderIcon = props.headerIcon;
+  const { classes } = props;
 
   return (
-    <div className="modal-overlay" onClick={handleBackgroundClick}>
-      <div className="modal">
-        <header className="modal__header">
+    <div className={classes.modalOverlay} onClick={handleBackgroundClick}>
+      <div className={classes.modal}>
+        <header className={classes.modalHeader}>
           <HeaderIcon color={props.headerIconColor} />
         </header>
-        <div className="modal__body">{props.children}</div>
+        <div className={classes.modalBody}>{props.children}</div>
       </div>
     </div>
   );
 };
 
-export default ModalWrapper;
+export default injectSheet(styles)(ModalWrapper);

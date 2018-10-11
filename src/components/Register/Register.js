@@ -4,7 +4,9 @@ import { connect } from 'react-redux';
 import { registerUser, userLogin } from '../../actions';
 import { Transition } from 'react-transition-group';
 import PropTypes from 'prop-types';
+import injectSheet from 'react-jss';
 
+import styles from './Register.styles';
 import SpinnerIcon from '../icons/SpinnerIcon/SpinnerIcon';
 import CardsIcon from '../icons/CardsIcon/CardsIcon';
 import UserIcon from '../icons/UserIcon/UserIcon';
@@ -48,21 +50,25 @@ class Register extends Component {
   }
 
   renderFormContent(valid) {
+    const { classes } = this.props;
+
     if (!this.props.username) {
       return (
-        <div className="form-fields">
+        <div className={classes.formFields}>
           <Field
             type="text"
             name="username"
-            component={this.renderField}
+            component={field => this.renderField(field, classes)}
             autofocus={true}
           />
-          <div className="form-submit">
+          <div className={classes.formSubmit}>
             <button
               type="submit"
-              className={`form-button ${
-                valid && !this.state.registering ? 'form-button--active' : ''
-              }`}
+              className={
+                valid && !this.state.registering
+                  ? classes.formButtonActive
+                  : classes.formButton
+              }
             >
               Confirm name
             </button>
@@ -72,11 +78,11 @@ class Register extends Component {
     }
 
     return (
-      <div className="form-fields">
-        <div className="form-submit">
+      <div className={classes.formFields}>
+        <div className={classes.formSubmit}>
           <button
             type="button"
-            className="form-button form-button--active"
+            className={classes.formButtonActive}
             onClick={this.handleStartClick}
           >
             Start a game
@@ -86,18 +92,13 @@ class Register extends Component {
     );
   }
 
-  renderField(field) {
+  renderField(field, classes) {
     const { meta } = field;
+
     return (
-      <div className="form-field">
-        <div
-          className={`field-label ${
-            meta.active || meta.dirty ? 'field--focused' : ''
-          }`}
-        >
-          YOUR NAME
-        </div>
-        <div className={`field-input ${meta.active ? 'field--focused' : ''}`}>
+      <div className={classes.formField}>
+        <div className={classes.fieldLabel}>YOUR NAME</div>
+        <div className={classes.fieldInput}>
           <input
             type="text"
             autoComplete="off"
@@ -127,8 +128,10 @@ class Register extends Component {
   }
 
   renderCardIcons() {
+    const { classes } = this.props;
+
     return (
-      <div className="card-content__icon">
+      <div className={classes.cardContentIcon}>
         <Transition in={this.state.registering} timeout={0}>
           {spinnerState => {
             return (
@@ -141,13 +144,21 @@ class Register extends Component {
         <Transition in={!!this.props.username} timeout={0}>
           {cardsState => {
             return (
-              <CardsIcon style={{ ...cardsTransitionStyles[cardsState] }} />
+              <CardsIcon
+                className={classes.cardsIcon}
+                style={{ ...cardsTransitionStyles[cardsState] }}
+              />
             );
           }}
         </Transition>
         <Transition in={!!this.props.username} timeout={0}>
           {userState => {
-            return <UserIcon style={{ ...userTransitionStyles[userState] }} />;
+            return (
+              <UserIcon
+                className={classes.userIcon}
+                style={{ ...userTransitionStyles[userState] }}
+              />
+            );
           }}
         </Transition>
       </div>
@@ -155,16 +166,18 @@ class Register extends Component {
   }
 
   renderCardForm(handleSubmit, valid) {
+    const { classes } = this.props;
+
     return (
       <form
-        className="card-content__form"
+        className={classes.cardContentForm}
         onSubmit={handleSubmit(this.handleFormSubmit)}
       >
         <Transition in={!!this.props.username} timeout={300}>
           {titleState => {
             return (
               <div
-                className="form-title"
+                className={classes.formTitle}
                 style={{ ...defaultTitleStyles[titleState] }}
               >
                 Game Register
@@ -180,7 +193,7 @@ class Register extends Component {
           {titleState => {
             return (
               <div
-                className="form-title user-registered-content"
+                className={classes.formTitleUserRegisteredContent}
                 style={{ ...userTitleStyles[titleState] }}
               >{`Welcome, ${this.tidyName(this.props.username)}!`}</div>
             );
@@ -190,7 +203,7 @@ class Register extends Component {
           {descriptionState => {
             return (
               <div
-                className="form-description"
+                className={classes.formDescription}
                 style={{ ...defaultDescriptionStyles[descriptionState] }}
               >
                 Please enter your name before the game starts.{' '}
@@ -209,7 +222,7 @@ class Register extends Component {
           {descriptionState => {
             return (
               <div
-                className="form-description user-registered-content"
+                className={classes.formDescriptionUserRegisteredContent}
                 style={{ ...userDescriptionStyles[descriptionState] }}
               >
                 Thanks for your registration. Here's a cookie for you{' '}
@@ -228,10 +241,10 @@ class Register extends Component {
   }
 
   render() {
-    const { handleSubmit, valid } = this.props;
+    const { handleSubmit, valid, classes } = this.props;
 
     return (
-      <div className="register-wrapper">
+      <div className={classes.registerWrapper}>
         <Transition
           in={this.state.registered}
           timeout={450}
@@ -240,10 +253,10 @@ class Register extends Component {
           {state => {
             return (
               <div
-                className="register-card"
+                className={classes.registerCard}
                 style={{ ...registerTransitionStyles[state] }}
               >
-                <div className="card-content">
+                <div className={classes.cardContent}>
                   {this.renderCardIcons()}
                   {this.renderCardForm(handleSubmit, valid)}
                 </div>
@@ -275,12 +288,14 @@ function validate(values) {
   return errors;
 }
 
-export default reduxForm({
-  validate,
-  form: 'RegisterForm'
-})(
-  connect(
-    mapStateToProps,
-    { registerUser, userLogin }
-  )(Register)
+export default injectSheet(styles)(
+  reduxForm({
+    validate,
+    form: 'RegisterForm'
+  })(
+    connect(
+      mapStateToProps,
+      { registerUser, userLogin }
+    )(Register)
+  )
 );

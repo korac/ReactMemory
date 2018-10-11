@@ -1,7 +1,9 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { guessCard } from '../../actions/index';
+import injectSheet from 'react-jss';
 
+import styles from './MemortCard.styles';
 import background from './blue.jpg';
 
 class MemoryCard extends Component {
@@ -30,24 +32,32 @@ class MemoryCard extends Component {
     }
   }
 
-  cardStateStyle() {
-    return this.state.flipped || this.state.guessed
-      ? 'memory-card memory-card--flipped'
-      : 'memory-card';
-  }
+  // cardStateStyle() {
+  //   return this.state.flipped || this.state.guessed
+  //     ? 'memory-card memory-card--flipped'
+  //     : 'memory-card';
+  // }
 
   render() {
+    const { classes } = this.props;
+    const { flipped, guessed } = this.state;
+
     return (
-      <div className="card-perspective">
-        <div className={this.cardStateStyle()} onClick={this.flipCard}>
-          <div className="card-side card-side__front">
+      <div className={classes.cardPerspective}>
+        <div
+          className={
+            flipped || guessed ? classes.memoryCardFlipped : classes.memoryCard
+          }
+          onClick={this.flipCard}
+        >
+          <div className={classes.cardSideFront}>
             <img
               src={background}
-              className="front-background"
+              className={classes.frontBackground}
               alt="Card background"
             />
           </div>
-          <div className="card-side card-side__back">{this.props.children}</div>
+          <div className={classes.cardSideBack}>{this.props.children}</div>
         </div>
       </div>
     );
@@ -61,7 +71,9 @@ function mapStateToProps(state) {
   };
 }
 
-export default connect(
-  mapStateToProps,
-  { guessCard }
-)(MemoryCard);
+export default injectSheet(styles)(
+  connect(
+    mapStateToProps,
+    { guessCard }
+  )(MemoryCard)
+);

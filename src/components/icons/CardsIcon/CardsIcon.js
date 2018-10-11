@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 
 const CardsIcon = props => {
   return (
-    <div className="cards-icon icon-wrapper" style={{ ...props.style }}>
+    <div className={props.className} style={{ ...props.style }}>
       <svg
         version="1.1"
         fill="#1e72bb"

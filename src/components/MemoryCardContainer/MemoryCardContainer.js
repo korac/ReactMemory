@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
-import MemoryCard from '../MemoryCard';
+import injectSheet from 'react-jss';
 
+import styles from './MemoryCardContainer.styles';
+import MemoryCard from '../MemoryCard';
 import CssIcon from '../icons/CssIcon/CssIcon';
 import RailsIcon from '../icons/RailsIcon/RailsIcon';
 import ReactIcon from '../icons/ReactIcon/ReactIcon';
@@ -132,9 +134,11 @@ class MemoryCardContainer extends Component {
   }
 
   render() {
+    const { classes } = this.props;
+
     return (
-      <div className="main-window" style={{ ...this.props.style }}>
-        <div className="cards-container">
+      <div className={classes.mainWindow} style={{ ...this.props.style }}>
+        <div className={classes.cardsContainer}>
           {this.shuffleCards(this.renderCards())}
         </div>
       </div>
@@ -142,4 +146,4 @@ class MemoryCardContainer extends Component {
   }
 }
 
-export default MemoryCardContainer;
+export default injectSheet(styles)(MemoryCardContainer);

@@ -11,6 +11,7 @@ const GameOverModal = props => {
     props.userLogout();
   };
 
+  // TODO - refactor ModalWrapper and GameOverModal to have unique styles
   return (
     <ModalWrapper
       {...props}

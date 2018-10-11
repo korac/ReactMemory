@@ -1,160 +1,163 @@
-.register-wrapper {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    position: fixed;
-    top: 0;
-    left: 0;
-    bottom: 0;
-    right: 0;
-}
+// DEPRECATED IN FAVOR OF REACT_JSS
+// SCHEDULED FOR REMOVAL
 
-.register-card {
-    width: 571px;
-    border-radius: 6px;
-    padding: 32px;
-    background-color: #fff;
-    box-shadow: 0 0 20px 0 #113366;
-
-    .card-content {
-        display: flex;
-        margin-top: 16px;
-
-        .card-content__icon {
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            border-right: 1px solid #e4e4e4;
-            margin-left: 8px;
-            padding-right: 40px;
-            position: relative;
-
-            .spinner-icon {
-                height: 98px;
-
-                @keyframes rotateSpinner {
-                    from {
-                        transform: rotateZ(0deg);
-                    }
-
-                    to {
-                        transform: rotateZ(360deg);
-                    }
-                }
-
-            }
-
-            .cards-icon {
-                width: 36px;
-                position: absolute;
-            }
-
-            .user-icon {
-                position: absolute;
-                transform: scale(0);
-            }
-
-        }
-
-        .card-content__form {
-            flex-grow: 1;
-            padding-left: 32px;
-
-            .form-title {
-                margin-bottom: 10px;
-                color: #111;
-                font-size: 28px;
-                font-weight: bold;
-            }
-
-            .form-description {
-                color: #555;
-                font-size: 14px;
-                line-height: 1.5;
-            }
-
-            .user-registered-content {
-                opacity: 0;
-                transform: translateY(40px);
-            }
-
-            .form-fields {
-                margin-top: 24px;
-            }
-
-            .form-field {
-                flex-grow: 1;
-                margin: 16px 0;
-
-                .field-label {
-                    margin-bottom: 12px;
-                    color: #777;
-                    font-size: 12px;
-                    font-weight: 500;
-
-                    &.field--focused {
-                        color: #1e72bb;
-                    }
-
-                }
-
-                .field-input {
-                    display: flex;
-                    align-items: center;
-                    border-radius: 3px;
-                    border: solid 1px #d4d4d4;
-                    padding: 2px;
-
-                    &.field--focused {
-                        box-shadow: 0 0 4px 0 rgba(30, 114, 187, 0.5);
-                        border: solid 1px #1e72bb;
-                    }
-
-                    input {
-                        flex-grow: 1;
-                        border: none;
-                        padding: 10px 14px;
-                        caret-color: #1e72bb;
-                        outline: none;
-
-                        &.warning {
-                            color: #ff2121;
-                        }
-
-                    }
-
-                }
-
-            }
-
-            .form-submit {
-                display: flex;
-                margin-top: 32px;
-
-                .form-button {
-                    flex-grow: 1;
-                    padding: 16px;
-                    border: none;
-                    border-radius: 4px;
-                    background-color: rgba(#1e72bb, 0.35);
-                    color: #fff;
-                    font-size: 16px;
-                    font-weight: bold;
-                    cursor: not-allowed;
-                    outline: none;
-
-                    &.form-button--active {
-                        background-color: #36C991;
-                        color: #fff;
-                        cursor: pointer;
-                    }
-
-                }
-
-            }
-
-        }
-
-    }
-
-}
+//.register-wrapper {
+//    display: flex;
+//    justify-content: center;
+//    align-items: center;
+//    position: fixed;
+//    top: 0;
+//    left: 0;
+//    bottom: 0;
+//    right: 0;
+//}
+//
+//.register-card {
+//    width: 571px;
+//    border-radius: 6px;
+//    padding: 32px;
+//    background-color: #fff;
+//    box-shadow: 0 0 20px 0 #113366;
+//
+//    .card-content {
+//        display: flex;
+//        margin-top: 16px;
+//
+//        .card-content__icon {
+//            display: flex;
+//            justify-content: center;
+//            align-items: center;
+//            border-right: 1px solid #e4e4e4;
+//            margin-left: 8px;
+//            padding-right: 40px;
+//            position: relative;
+//
+//            .spinner-icon {
+//                height: 98px;
+//
+//                @keyframes rotateSpinner {
+//                    from {
+//                        transform: rotateZ(0deg);
+//                    }
+//
+//                    to {
+//                        transform: rotateZ(360deg);
+//                    }
+//                }
+//
+//            }
+//
+//            .cards-icon {
+//                width: 36px;
+//                position: absolute;
+//            }
+//
+//            .user-icon {
+//                position: absolute;
+//                transform: scale(0);
+//            }
+//
+//        }
+//
+//        .card-content__form {
+//            flex-grow: 1;
+//            padding-left: 32px;
+//
+//            .form-title {
+//                margin-bottom: 10px;
+//                color: #111;
+//                font-size: 28px;
+//                font-weight: bold;
+//            }
+//
+//            .form-description {
+//                color: #555;
+//                font-size: 14px;
+//                line-height: 1.5;
+//            }
+//
+//            .user-registered-content {
+//                opacity: 0;
+//                transform: translateY(40px);
+//            }
+//
+//            .form-fields {
+//                margin-top: 24px;
+//            }
+//
+//            .form-field {
+//                flex-grow: 1;
+//                margin: 16px 0;
+//
+//                .field-label {
+//                    margin-bottom: 12px;
+//                    color: #777;
+//                    font-size: 12px;
+//                    font-weight: 500;
+//
+//                    &.field--focused {
+//                        color: #1e72bb;
+//                    }
+//
+//                }
+//
+//                .field-input {
+//                    display: flex;
+//                    align-items: center;
+//                    border-radius: 3px;
+//                    border: solid 1px #d4d4d4;
+//                    padding: 2px;
+//
+//                    &.field--focused {
+//                        box-shadow: 0 0 4px 0 rgba(30, 114, 187, 0.5);
+//                        border: solid 1px #1e72bb;
+//                    }
+//
+//                    input {
+//                        flex-grow: 1;
+//                        border: none;
+//                        padding: 10px 14px;
+//                        caret-color: #1e72bb;
+//                        outline: none;
+//
+//                        &.warning {
+//                            color: #ff2121;
+//                        }
+//
+//                    }
+//
+//                }
+//
+//            }
+//
+//            .form-submit {
+//                display: flex;
+//                margin-top: 32px;
+//
+//                .form-button {
+//                    flex-grow: 1;
+//                    padding: 16px;
+//                    border: none;
+//                    border-radius: 4px;
+//                    background-color: rgba(#1e72bb, 0.35);
+//                    color: #fff;
+//                    font-size: 16px;
+//                    font-weight: bold;
+//                    cursor: not-allowed;
+//                    outline: none;
+//
+//                    &.form-button--active {
+//                        background-color: #36C991;
+//                        color: #fff;
+//                        cursor: pointer;
+//                    }
+//
+//                }
+//
+//            }
+//
+//        }
+//
+//    }
+//
+//}

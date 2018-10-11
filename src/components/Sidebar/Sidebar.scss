@@ -1,68 +1,68 @@
-.sidebar {
-    display: flex;
-    flex-direction: column;
-    border-right: 1px solid rgba(#fff, 0.4);
-
-    .sidebar-header {
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        padding: 20px;
-
-        .sidebar-title {
-            margin: 0;
-            font-size: 22px;
-        }
-
-        .react-icon {
-            width: 50px;
-            height: 50px;
-        }
-
-    }
-
-    hr {
-        width: 60%;
-        border: 1px solid rgba(#fff, 0.4);
-    }
-
-    .sidebar-body {
-        display: flex;
-        flex-direction: column;
-        flex-grow: 1;
-
-        .sidebar-body__content {
-            flex-grow: 1;
-            padding: 20px;
-            color: #fff;
-
-            .pairs__guessed {
-                font-size: 64px;
-                text-align: center;
-            }
-
-        }
-
-        .sidebar-body__logout {
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            align-items: center;
-            padding: 20px;
-            font-size: 14px;
-            cursor: pointer;
-
-            &:hover {
-                background-color: rgba(#000, 0.1);
-            }
-
-            .logout-message {
-                margin-top: 8px;
-                color: #fff;
-            }
-
-        }
-
-    }
-
-}
+//.sidebar {
+//    display: flex;
+//    flex-direction: column;
+//    border-right: 1px solid rgba(#fff, 0.4);
+//
+//    .sidebar-header {
+//        display: flex;
+//        justify-content: center;
+//        align-items: center;
+//        padding: 20px;
+//
+//        .sidebar-title {
+//            margin: 0;
+//            font-size: 22px;
+//        }
+//
+//        .react-icon {
+//            width: 50px;
+//            height: 50px;
+//        }
+//
+//    }
+//
+//    hr {
+//        width: 60%;
+//        border: 1px solid rgba(#fff, 0.4);
+//    }
+//
+//    .sidebar-body {
+//        display: flex;
+//        flex-direction: column;
+//        flex-grow: 1;
+//
+//        .sidebar-body__content {
+//            flex-grow: 1;
+//            padding: 20px;
+//            color: #fff;
+//
+//            .pairs__guessed {
+//                font-size: 64px;
+//                text-align: center;
+//            }
+//
+//        }
+//
+//        .sidebar-body__logout {
+//            display: flex;
+//            flex-direction: column;
+//            justify-content: center;
+//            align-items: center;
+//            padding: 20px;
+//            font-size: 14px;
+//            cursor: pointer;
+//
+//            &:hover {
+//                background-color: rgba(#000, 0.1);
+//            }
+//
+//            .logout-message {
+//                margin-top: 8px;
+//                color: #fff;
+//            }
+//
+//        }
+//
+//    }
+//
+//}

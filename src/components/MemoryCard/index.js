@@ -1,4 +1,4 @@
 import MemoryCard from './MemoryCard';
-import './MemoryCard.css';
+// import './MemoryCard.css';
 
 export default MemoryCard;

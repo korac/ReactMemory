@@ -1,4 +1,4 @@
 import Register from './Register';
-import './Register.css';
+// import './Register.css';
 
 export default Register;

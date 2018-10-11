@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 
 const ReactIcon = props => {
   return (
-    <div className="card-icon react-icon">
+    <div className={props.className}>
       <svg viewBox="0 0 24 24">
         <path
           fill={props.color || '#61dbfb'}

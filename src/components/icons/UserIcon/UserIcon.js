@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 
 const UserIcon = props => {
   return (
-    <div className="user-icon icon-wrapper" style={{ ...props.style }}>
+    <div className={props.className} style={{ ...props.style }}>
       <svg
         xmlns="http://www.w3.org/2000/svg"
         width="32"

@@ -1,4 +1,4 @@
 import ModalWrapper from './ModalWrapper';
-import './ModalWrapper.css';
+// import './ModalWrapper.css';
 
 export default ModalWrapper;

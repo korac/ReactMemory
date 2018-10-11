@@ -1,63 +1,66 @@
-.card-perspective {
-    position: relative;
-    perspective: 800px;
-}
+// DEPRECATED IN FAVOR OF REACT_JSS
+// SCHEDULED FOR REMOVAL
 
-.memory-card {
-    width: 180px;
-    height: 260px;
-    border: 1px solid rgba(#333, 0.4);
-    border-radius: 8px;
-    box-shadow: 0 0 12px 0 rgba(0, 0, 0, 0.2);
-    transform-style: preserve-3d;
-    -webkit-transition: all .5s ease;
-    -moz-transition: all .5s ease;
-    -ms-transition: all .5s ease;
-    -o-transition: all .5s ease;
-    transition: all .5s ease;
-
-    &.memory-card--flipped {
-        transform: rotateY(180deg);
-    }
-
-    .card-side {
-        //width: 100%;
-        //height: 100%;
-        width: 148px;
-        height: 228px;
-        padding: 16px;
-        position: absolute;
-        backface-visibility: hidden;
-
-        &.card-side__front {
-            display: flex;
-            justify-content: flex-end;
-            align-items: flex-end;
-            border-radius: 8px;
-            background-color: #fff;
-
-            .front-background {
-                width: 100%;
-                height: 100%;
-            }
-
-        }
-
-        &.card-side__back {
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            border-radius: 8px;
-            background-color: #fff;
-            transform: rotateY(180deg);
-
-            .card-icon {
-                width: 80%;
-                height: 50%;
-            }
-
-        }
-
-    }
-
-}
+//.card-perspective {
+//    position: relative;
+//    perspective: 800px;
+//}
+//
+//.memory-card {
+//    width: 180px;
+//    height: 260px;
+//    border: 1px solid rgba(#333, 0.4);
+//    border-radius: 8px;
+//    box-shadow: 0 0 12px 0 rgba(0, 0, 0, 0.2);
+//    transform-style: preserve-3d;
+//    -webkit-transition: all .5s ease;
+//    -moz-transition: all .5s ease;
+//    -ms-transition: all .5s ease;
+//    -o-transition: all .5s ease;
+//    transition: all .5s ease;
+//
+//    &.memory-card--flipped {
+//        transform: rotateY(180deg);
+//    }
+//
+//    .card-side {
+//        //width: 100%;
+//        //height: 100%;
+//        width: 148px;
+//        height: 228px;
+//        padding: 16px;
+//        position: absolute;
+//        backface-visibility: hidden;
+//
+//        &.card-side__front {
+//            display: flex;
+//            justify-content: flex-end;
+//            align-items: flex-end;
+//            border-radius: 8px;
+//            background-color: #fff;
+//
+//            .front-background {
+//                width: 100%;
+//                height: 100%;
+//            }
+//
+//        }
+//
+//        &.card-side__back {
+//            display: flex;
+//            justify-content: center;
+//            align-items: center;
+//            border-radius: 8px;
+//            background-color: #fff;
+//            transform: rotateY(180deg);
+//
+//            .card-icon {
+//                width: 80%;
+//                height: 50%;
+//            }
+//
+//        }
+//
+//    }
+//
+//}
